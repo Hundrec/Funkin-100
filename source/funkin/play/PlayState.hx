@@ -2034,7 +2034,7 @@ class PlayState extends MusicBeatSubState
     // TODO: Add functionality for modules to update the score text.
     if (isBotPlayMode)
     {
-      scoreText.text = 'Bot Play Enabled';
+      scoreText.text = 'Score:' + songScore;
     }
     else
     {
@@ -2049,7 +2049,7 @@ class PlayState extends MusicBeatSubState
   {
     if (isBotPlayMode)
     {
-      healthLerp = Constants.HEALTH_MAX;
+      healthLerp = FlxMath.lerp(healthLerp, health, 0.15);
     }
     else
     {
@@ -2220,6 +2220,17 @@ class PlayState extends MusicBeatSubState
         // Command the bot to hit the note on time.
         // NOTE: This is what handles the strumline and cleaning up the note itself!
         playerStrumline.hitNote(note);
+        
+        Highscore.tallies.combo += 1;
+
+        playerStrumline.playNoteSplash(note.noteData.getDirection());
+
+        comboPopUps.displayRating('sick');
+        if (Highscore.tallies.combo >= 10 || Highscore.tallies.combo == 0) comboPopUps.displayCombo(Highscore.tallies.combo);
+
+        health += Constants.HEALTH_SICK_BONUS;
+
+        songScore += 500;
 
         if (note.holdNoteSprite != null)
         {
@@ -2269,11 +2280,16 @@ class PlayState extends MusicBeatSubState
       if (holdNote == null || !holdNote.alive) continue;
 
       // While the hold note is being hit, and there is length on the hold note...
-      if (!isBotPlayMode && holdNote.hitNote && !holdNote.missedNote && holdNote.sustainLength > 0)
+      if (holdNote.hitNote && !holdNote.missedNote && holdNote.sustainLength > 0)
       {
         // Grant the player health.
         health += Constants.HEALTH_HOLD_BONUS_PER_SECOND * elapsed;
         songScore += Std.int(Constants.SCORE_HOLD_BONUS_PER_SECOND * elapsed);
+        // Make sure the player keeps singing while the note is held.
+        if (currentStage != null && currentStage.getBoyfriend() != null && currentStage.getBoyfriend().isSinging())
+        {
+          currentStage.getBoyfriend().holdTimer = 0;
+        }
       }
 
       if (holdNote.missedNote && !holdNote.handledMiss)

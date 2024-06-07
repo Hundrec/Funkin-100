@@ -144,7 +144,6 @@ class Preferences
     if (show)
     {
       // Enable the debug display.
-      FlxG.stage.addChild(Main.fpsCounter);
       #if !html5
       FlxG.stage.addChild(Main.memoryCounter);
       #end
@@ -152,7 +151,6 @@ class Preferences
     else
     {
       // Disable the debug display.
-      FlxG.stage.removeChild(Main.fpsCounter);
       #if !html5
       FlxG.stage.removeChild(Main.memoryCounter);
       #end

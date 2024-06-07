@@ -26,7 +26,7 @@ class Main extends Sprite
   var framerate:Int = 60; // How many frames per second the game should run at.
   #else
   // TODO: This should probably be in the options menu?
-  var framerate:Int = 144; // How many frames per second the game should run at.
+  var framerate:Int = 60; // How many frames per second the game should run at.
   #end
   var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
   var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
@@ -81,8 +81,6 @@ class Main extends Sprite
   /**
    * A frame counter displayed at the top left.
    */
-  public static var fpsCounter:FPS;
-
   /**
    * A RAM counter displayed at the top left.
    */
@@ -93,7 +91,6 @@ class Main extends Sprite
     initHaxeUI();
 
     // addChild gets called by the user settings code.
-    fpsCounter = new FPS(10, 3, 0xFFFFFF);
 
     #if !html5
     // addChild gets called by the user settings code.
@@ -115,14 +112,6 @@ class Main extends Sprite
 
     #if debug
     game.debugger.interaction.addTool(new funkin.util.TrackerToolButtonUtil());
-    #end
-
-    addChild(fpsCounter);
-
-    #if hxcpp_debug_server
-    trace('hxcpp_debug_server is enabled! You can now connect to the game with a debugger.');
-    #else
-    trace('hxcpp_debug_server is disabled! This build does not support debugging.');
     #end
   }
 
