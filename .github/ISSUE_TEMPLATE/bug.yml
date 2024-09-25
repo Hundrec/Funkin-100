@@ -49,10 +49,13 @@ body:
     attributes:
       value: "### Please do not report issues from other engines. These must be reported in their respective repositories."
 
+  - type: markdown
+    attributes:
+      value: "#### Provide as much detail as you can. The better others understand your issue, the more they can help you!" 
+
   - type: textarea
     attributes:
       label: Description (include any images, videos, errors, or crash logs)
-      description: Provide as much detail as you can. The better others understand your issue, the more they can help you!  
       placeholder: Describe your issue here...
     validations:
       required: true
@@ -61,4 +64,4 @@ body:
     attributes:
       label: Steps to Reproduce
       description: What steps can other people take to reliably encounter this issue?
-      placeholder: ex. 1. Open the game...
+      placeholder: 1. Open the game...
