@@ -47,6 +47,10 @@ body:
 
   - type: markdown
     attributes:
+      value: "## Describe your bug."
+  
+  - type: markdown
+    attributes:
       value: "### Please do not report issues from other engines. These must be reported in their respective repositories."
 
   - type: markdown
