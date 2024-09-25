@@ -67,4 +67,5 @@ body:
   - type: textarea
     attributes:
       label: Steps to Reproduce
-      placeholder: 1. Open the game...</br>2. ...
+      placeholder: 1. Open the game... |  
+      2. ...
