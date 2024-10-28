@@ -20,6 +20,10 @@ class StageData
   @:optional
   public var cameraZoom:Null<Float>;
 
+  @:default("shared")
+  @:optional
+  public var directory:Null<String>;
+
   public function new()
   {
     this.version = StageRegistry.STAGE_DATA_VERSION;
@@ -119,6 +123,22 @@ typedef StageDataProp =
   var isPixel:Bool;
 
   /**
+   * If set to true, the prop will be flipped horizontally.
+   * @default false
+   */
+  @:optional
+  @:default(false)
+  var flipX:Bool;
+
+  /**
+   * If set to true, the prop will be flipped vertically.
+   * @default false
+   */
+  @:optional
+  @:default(false)
+  var flipY:Bool;
+
+  /**
    * Either the scale of the prop as a float, or the [w, h] scale as an array of two floats.
    * Pro tip: On pixel-art levels, save the sprite small and set this value to 6 or so to save memory.
    */
@@ -182,6 +202,32 @@ typedef StageDataProp =
   @:default("sparrow")
   @:optional
   var animType:String;
+
+  /**
+   * The angle of the prop, as a float.
+   * @default 1.0
+   */
+  @:optional
+  @:default(0.0)
+  var angle:Float;
+
+  /**
+   * The blend mode of the prop, as a string.
+   * Just like in photoshop.
+   * @default Nothing.
+   */
+  @:default("")
+  @:optional
+  var blend:String;
+
+  /**
+   * The color of the prop overlay, as a hex string.
+   * White overlays, or the ones with the value #FFFFFF, do not appear.
+   * @default `#FFFFFF`
+   */
+  @:default("#FFFFFF")
+  @:optional
+  var color:String;
 };
 
 typedef StageDataCharacter =
