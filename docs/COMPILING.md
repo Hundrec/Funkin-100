@@ -44,4 +44,4 @@ There are several useful build flags you can add to a build to affect how it wor
 
 # Troubleshooting
 
-If you experience any issues during the compilation process, DO NOT open an issue on GitHub. Instead, check the [Troubleshooting Guide](TROUBLESHOOTING.md) for steps on how to resolve common problems.
+If you experience any issues during the compilation process, DO NOT open an issue on GitHub. Instead, check the [Troubleshooting Guide](TROUBLESHOOTING.md) for steps on how to resolve common problems. 
