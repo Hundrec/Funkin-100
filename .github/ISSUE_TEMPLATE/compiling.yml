@@ -1,4 +1,4 @@
-name: Compiling Report
+name: Compiling Report 
 description: Report an issue with compiling the game.
 labels: ["type: compilation help", "status: pending triage"]
 title: "Compiling Report: "
