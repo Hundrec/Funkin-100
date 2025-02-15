@@ -2060,6 +2060,11 @@ class ChartEditorState extends UIState // UIState derives from MusicBeatState
   var notePreviewPlayhead:Null<FlxSprite> = null;
 
   /**
+   * Whether the note preview playhead is currently being dragged with the mouse by the user.
+   */
+  var notePreviewPlayHeadDragging:Bool = false;
+
+  /**
    * The rectangular sprite used for rendering the selection box.
    * Uses a 9-slice to stretch the selection box to the correct size without warping.
    */
@@ -4178,8 +4183,6 @@ class ChartEditorState extends UIState // UIState derives from MusicBeatState
         if (playbarHeadDraggingWasPlaying)
         {
           playbarHeadDraggingWasPlaying = false;
-
-          // Disabled code to resume song playback on drag.
           startAudioPlayback();
         }
       }
@@ -4187,6 +4190,13 @@ class ChartEditorState extends UIState // UIState derives from MusicBeatState
       if (notePreviewScrollAreaStartPos != null && FlxG.mouse.released)
       {
         notePreviewScrollAreaStartPos = null;
+        notePreviewPlayHeadDragging = false;
+
+        if (playbarHeadDraggingWasPlaying)
+        {
+          playbarHeadDraggingWasPlaying = false;
+          startAudioPlayback();
+        }
       }
 
       if (gridPlayheadScrollAreaPressed)
@@ -4461,6 +4471,14 @@ class ChartEditorState extends UIState // UIState derives from MusicBeatState
       }
       else if (notePreviewScrollAreaStartPos != null)
       {
+        notePreviewPlayHeadDragging = true;
+        // Stop audio playback while dragging on the note preview playhead.
+        if (audioInstTrack != null && audioInstTrack.isPlaying)
+        {
+          playbarHeadDraggingWasPlaying = true;
+          stopAudioPlayback();
+        }
+
         // Player is clicking and holding on note preview to scrub around.
         targetCursorMode = Grabbing;
 
@@ -5889,7 +5907,8 @@ class ChartEditorState extends UIState // UIState derives from MusicBeatState
   {
     if (audioInstTrack != null)
     {
-      if (playbarHeadDragging || gridPlayheadScrollAreaPressed) return;
+      // Don't allow the audio to be played while we're dragging any of the playheads
+      if (playbarHeadDragging || gridPlayheadScrollAreaPressed || notePreviewPlayHeadDragging) return;
       audioInstTrack.play(false, audioInstTrack.time);
       audioVocalTrackGroup.play(false, audioInstTrack.time);
     }
@@ -6341,7 +6360,8 @@ class ChartEditorState extends UIState // UIState derives from MusicBeatState
     }
     else
     {
-      if (playbarHeadDragging || gridPlayheadScrollAreaPressed) return;
+      // Don't allow the audio to be played while we're dragging any of the playheads
+      if (playbarHeadDragging || gridPlayheadScrollAreaPressed || notePreviewPlayHeadDragging) return;
       // Play
       startAudioPlayback();
       stopWelcomeMusic();
