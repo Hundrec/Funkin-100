@@ -183,7 +183,7 @@ Here are some guidelines for writing comments in your code:
 - Only sign your comments with your name when your changes are complex and may require further explanation.
 
 #### Examples
-##### DO NOT:
+#### DO NOT:
 Below are examples of what you SHOULD NOT do when writing code comments.
 ```haxe
 /**
@@ -270,7 +270,7 @@ if (FlxG.keys.justPressed.PAGEDOWN) changeSection(FlxG.keys.pressed.SHIFT ? -20 
 #end
 ```
 
-##### DO:
+#### DO:
 Below are examples on what you SHOULD do when writing code comments.
 ```haxe
 /**
