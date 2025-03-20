@@ -123,7 +123,7 @@ Also only report one issue or enhancement at a time! If you have multiple bug re
 Once you're sure your issue is unique and specific, feel free to submit it.
 
 > [!IMPORTANT]
-> If a pull request is opened to clarify your issue after you’ve submitted it, **DO NOT CLOSE YOUR ISSUE!** Leave it open until the pull request is merged, it will be closed after that.
+> **DO NOT CLOSE YOUR ISSUE FOR ANY REASON!** Your issue will be taken care of by a moderator!
 
 **Thank you for opening issues!**
 
@@ -172,18 +172,18 @@ Code-based PRs make changes such as **fixing bugs** or **implementing new featur
 This involves modifying one or several of the repository’s `.hx` files, found within the `source/` folder.
 
 ### Codestyle
-Before submitting your PR, check that your code follows the [Style Guide](https://github.com/FunkinCrew/Funkin/blob/main/docs/style-guide.md). This helps make your code consistent with the rest of the codebase!
+Before submitting your PR, check that your code follows the [Style Guide](https://github.com/FunkinCrew/Funkin/blob/main/docs/style-guide.md). This keeps your code consistent with the rest of the codebase!
 
 ### Code comments
-Code comments are integral to making code PRs. The way you write your code comments is important!
+Code comments help others understand your changes, so the way you write them is important!
 Here are some guidelines for writing comments in your code:
-- Leave comments only when you believe a piece of code warrants explanation. If a piece of code is self explanatory, it does not need a comment.
+- Leave comments only when you believe a piece of code warrants explanation. If a piece of code is self-explanatory, it does not need a comment.
 - Ensure that your comments provide meaningful insight into the function or purpose of the code.
 - Write your comments in a clear and concise manner.
 - Only sign your comments with your name when your changes are complex and may require further explanation.
 
 #### Examples
-#### DO NOT:
+##### DO NOT:
 Below are examples of what you SHOULD NOT do when writing code comments.
 ```haxe
 /**
@@ -200,7 +200,7 @@ function changeSection(sections:Int):Void
   var targetTimeSteps:Float = Conductor.instance.currentStepTime + (Conductor.instance.stepsPerMeasure * sections);
   var targetTimeMs:Float = Conductor.instance.getStepTimeInMs(targetTimeSteps);
 
-  // Don't go back in time to before the song started, that would probably break a lot of things and cause a whole bunch of problems!
+  // Don't go back in time to before the song started, that would probably break a lot of things and cause a bunch of problems!
   targetTimeMs = Math.max(0, targetTimeMs);
 
   if (FlxG.sound.music != null) // If the music is not null, set the time to the target time
@@ -270,7 +270,7 @@ if (FlxG.keys.justPressed.PAGEDOWN) changeSection(FlxG.keys.pressed.SHIFT ? -20 
 #end
 ```
 
-#### DO:
+##### DO:
 Below are examples on what you SHOULD do when writing code comments.
 ```haxe
 /**
