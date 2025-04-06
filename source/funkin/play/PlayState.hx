@@ -2150,17 +2150,9 @@ class PlayState extends MusicBeatSubState
      */
   function updateScoreText():Void
   {
-    // TODO: Add functionality for modules to update the score text.
-    if (isBotPlayMode)
-    {
-      scoreText.text = 'Score:' + songScore;
-    }
-    else
-    {
-      // TODO: Add an option for this maybe?
-      var commaSeparated:Bool = true;
-      scoreText.text = 'Score: ${FlxStringUtil.formatMoney(songScore, false, commaSeparated)}';
-    }
+    // TODO: Add an option for this maybe?
+    var commaSeparated:Bool = true;
+    scoreText.text = 'Score: ${FlxStringUtil.formatMoney(songScore, false, commaSeparated)}';
   }
 
   /**
@@ -2168,14 +2160,7 @@ class PlayState extends MusicBeatSubState
      */
   function updateHealthBar():Void
   {
-    if (isBotPlayMode)
-    {
-      healthLerp = FlxMath.lerp(healthLerp, health, 0.15);
-    }
-    else
-    {
-      healthLerp = FlxMath.lerp(healthLerp, health, 0.15);
-    }
+    healthLerp = FlxMath.lerp(healthLerp, health, 0.15);
   }
 
   /**
@@ -2348,9 +2333,11 @@ class PlayState extends MusicBeatSubState
         applyScore(500, 'sick', Constants.HEALTH_SICK_BONUS, false);
         popUpScore('sick');
 
-        if (note.isHoldNote && note.holdNoteSprite != null) playerStrumline.playNoteHoldCover(note.holdNoteSprite);
+        if (note.holdNoteSprite != null)
+          {
+            playerStrumline.playNoteHoldCover(note.holdNoteSprite);
+          }
       }
-      
       else if (Conductor.instance.songPosition > hitWindowStart)
       {
         note.tooEarly = false;
