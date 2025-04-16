@@ -3323,6 +3323,27 @@ class ChartEditorState extends UIState // UIState derives from MusicBeatState
     handlePostUpdate();
   }
 
+
+  /**
+   * Function called when the game window loses focus.
+  **/
+  public override function onFocusLost():Void
+  {
+    stopAudioPlayback();
+
+    super.onFocusLost();
+  }
+
+  /**
+   * Function called when the game window gains focus.
+  **/
+  public override function onFocus():Void
+  {
+    startAudioPlayback();
+
+    super.onFocus();
+  }
+
   /**
    * Beat hit while the song is playing.
    */
