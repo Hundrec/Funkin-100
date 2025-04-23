@@ -156,18 +156,22 @@ Choosing the right base branch helps keep your commit history clean and avoid me
 Once you’re satisfied with the changes you’ve made, open a PR and base it on the same branch you previously chose.
 
 ## Maintaining your pull request
-Maintaining your pull request is important, it helps keep your pull request tidy and easy to review. A pull request can collect dust and merge conflicts if left abandoned!
+Keeping your pull request clean and easy to review increases the chance that it will be accepted! 
 
-The Funkin' GitHub repository has a policy for pull requests. If your pull request recieves the `status: needs revision` label, and you don't resolve it within **90** days, **your pull request will be closed**!
-This is to ensure that only fresh and updated pull requests are in the open pull requests section.
+Our maintenance policy is as follows:
+- If we require changes to your PR, we will label your PR `status: needs revision`.
+- We may also leave a comment under your PR specifying what changes you should make.
+- If you receive a comment, you have 90 days to implement the requested changes.
+- After this period, your PR will be closed due to inactivity and labeled `status: stale`.
+- Even after your PR is closed, you may request for us to reopen it. Just be sure to address the issues!   
 
-> [!IMPORTANT]
-> If your pull request gets closed for inactivity, it will have the `status: stale` label. **THIS IS NOT A REJECTION OF THE PULL REQUEST**, once you address the issues, you can request that your pull request be re-opened!
+This policy ensures that PRs awaiting review are up to date and ready to merge.
+
 ### Merge conflicts and rebasing
 Some game updates introduce significant breaking changes that may create merge conflicts in your PR. To resolve them, you will need to update or rebase your PR.
 
 Most merge conflicts are small and will only require you to modify a few files to resolve them.
-However, some changes are so big that your commit history will look like a mess!
+However, some changes are so big that your commit history will be a total mess!
 In this case, you will have to perform a [**rebase**](https://docs.github.com/en/get-started/using-git/about-git-rebase).
 This process reapplies your changes on top of the updated branch and cleanly resolves the merge conflicts.
 
