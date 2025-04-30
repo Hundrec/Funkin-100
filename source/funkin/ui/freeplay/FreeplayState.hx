@@ -788,7 +788,7 @@ class FreeplayState extends MusicBeatSubState
     FlxG.console.registerFunction('changeSelection', changeSelection);
 
     rememberSelection();
-    changeSelection();
+    changeSelection(0, false);
     refreshCapsuleDisplays();
   }
 
@@ -1746,6 +1746,7 @@ class FreeplayState extends MusicBeatSubState
       curSelected = findClosestDiff(characterVariations, difficultiesAvailable[currentDifficultyIndex]);
       daSong = grpCapsules.members[curSelected].freeplayData;
       rememberedSongId = daSong?.data.id;
+      characterVariations = daSong?.data.getVariationsByCharacter(currentCharacter) ?? Constants.DEFAULT_VARIATION_LIST;
     }
 
     for (variation in characterVariations)
@@ -2056,7 +2057,7 @@ class FreeplayState extends MusicBeatSubState
     }
   }
 
-  function changeSelection(change:Int = 0):Void
+  function changeSelection(change:Int = 0, playPreview:Bool = true):Void
   {
     var prevSelected:Int = curSelected;
 
@@ -2104,7 +2105,7 @@ class FreeplayState extends MusicBeatSubState
 
     if (grpCapsules.countLiving() > 0 && !prepForNewRank)
     {
-      playCurSongPreview(daSongCapsule);
+      if (playPreview) playCurSongPreview(daSongCapsule);
       grpCapsules.members[curSelected].selected = true;
 
       // switchBackingImage(daSongCapsule.freeplayData);
