@@ -88,6 +88,7 @@ Here's a list of commonly suggested features and the reasons why they won't be a
 | Importing Charts from Psych Engine (and other mod content) | https://github.com/FunkinCrew/Funkin/issues/2586#issuecomment-2125733327 |
 | Backwards Compatibility for Modding | https://github.com/FunkinCrew/Funkin/issues/3949#issuecomment-2608391329 |
 | Lua Support | https://github.com/FunkinCrew/Funkin/issues/2643#issuecomment-2143718093 |
+| New intro text lines | N/A |
 
 
 ## Issue Types
@@ -156,14 +157,14 @@ Choosing the right base branch helps keep your commit history clean and avoid me
 Once you’re satisfied with the changes you’ve made, open a PR and base it on the same branch you previously chose.
 
 ## Maintaining your pull request
-Keeping your pull request clean and easy to review increases the chance that it will be accepted! 
+Keeping your pull request clean and easy to review increases the chance that it will be accepted!
 
 Our maintenance policy is as follows:
 - If we require changes to your PR, we will label your PR `status: needs revision`.
 - We may also leave a comment under your PR specifying what changes you should make.
 - If you receive a comment, you have 90 days to implement the requested changes.
 - After this period, your PR will be closed due to inactivity and labeled `status: stale`.
-- Even after your PR is closed, you may request for us to reopen it. Just be sure to address the issues!   
+- Even after your PR is closed, you may request for us to reopen it. Just be sure to address the issues!
 
 This policy ensures that PRs awaiting review are up to date and ready to merge.
 
