@@ -2128,17 +2128,9 @@ class PlayState extends MusicBeatSubState
      */
   function updateScoreText():Void
   {
-    // TODO: Add functionality for modules to update the score text.
-    if (isBotPlayMode)
-    {
-      scoreText.text = 'Bot Play Enabled';
-    }
-    else
-    {
-      // TODO: Add an option for this maybe?
-      var commaSeparated:Bool = true;
-      scoreText.text = 'Score: ${FlxStringUtil.formatMoney(songScore, false, commaSeparated)}';
-    }
+    // TODO: Add an option for this maybe?
+    var commaSeparated:Bool = true;
+    scoreText.text = 'Score: ${FlxStringUtil.formatMoney(songScore, false, commaSeparated)}';
   }
 
   /**
@@ -2146,14 +2138,7 @@ class PlayState extends MusicBeatSubState
      */
   function updateHealthBar():Void
   {
-    if (isBotPlayMode)
-    {
-      healthLerp = Constants.HEALTH_MAX;
-    }
-    else
-    {
-      healthLerp = FlxMath.lerp(healthLerp, health, 0.15);
-    }
+    healthLerp = FlxMath.lerp(healthLerp, health, 0.15);
   }
 
   /**
@@ -2321,6 +2306,11 @@ class PlayState extends MusicBeatSubState
         // NOTE: This is what handles the strumline and cleaning up the note itself!
         playerStrumline.hitNote(note);
 
+        playerStrumline.playNoteSplash(note.noteData.getDirection());
+
+        applyScore(500, 'sick', Constants.HEALTH_SICK_BONUS, false);
+        popUpScore('sick');
+
         if (note.holdNoteSprite != null)
         {
           playerStrumline.playNoteHoldCover(note.holdNoteSprite);
@@ -2376,11 +2366,8 @@ class PlayState extends MusicBeatSubState
       if (holdNote.hitNote && !holdNote.missedNote && holdNote.sustainLength > 0)
       {
         // Grant the player health.
-        if (!isBotPlayMode)
-        {
-          health += Constants.HEALTH_HOLD_BONUS_PER_SECOND * elapsed;
-          songScore += Std.int(Constants.SCORE_HOLD_BONUS_PER_SECOND * elapsed);
-        }
+        health += Constants.HEALTH_HOLD_BONUS_PER_SECOND * elapsed;
+        songScore += Std.int(Constants.SCORE_HOLD_BONUS_PER_SECOND * elapsed);
 
         // Make sure the player keeps singing while the note is held by the bot.
         if (isBotPlayMode && currentStage != null && currentStage.getBoyfriend() != null && currentStage.getBoyfriend().isSinging())
